@@ -24,7 +24,7 @@ cd SentinelaNet
 pip install colorama
 ```
 ```shell script
-python3 cnc.py <port>
+python3 cnc.py 1337
 ```
 **Os logins são salvos em logins.txt no formato "username:password" dentro do arquivo logins.txt** 
 
