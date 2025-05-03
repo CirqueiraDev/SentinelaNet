@@ -142,7 +142,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
 - Atualizado CNC
     - Adicionado blacklist ```01/03/2025```
     - Atulizado comando bots ```02/05/2025```
-        - Agora o comando `bots` exibe a quantidade de bots atualmente conectados ao C2, e organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`) (tamb√©m mostra a quantidade em cada arquitetura).  
+        - Agora o comando `bots` exibe a quantidade de bots atualmente conectados ao C2, e organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`) (**tamb√©m mostra a quantidade em cada arquitetura**).  
 
 - Atualizado Payload
     - Atulizado Browser Flood ```01/03/2025```
@@ -154,4 +154,5 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
 
 ### Owner üéÆ
 - **Discord: Cirqueira**
-    - [YouTube](https://www.youtube.com/@cirqueiradev)
+  
+<a href="https://www.instagram.com/sirkeirax/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
