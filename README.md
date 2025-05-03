@@ -139,15 +139,17 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n�
 ---
 
 ### Last News ✨
-- Updated CNC
+- Atualizado CNC
     - Added blacklist ```01/03/2025```
 
-- Updated Payload
-    - Updated Browser Flood ```01/03/2025```
-    - Added UDP Flood Bypass ```06/03/2025```
-    - Roblox UDP Flood removed ```06/03/2025```
-    - Added TCP and UDP Flood Bypass ```07/03/2025```
-    - Updated SYN Flood ```07/03/2025```
+- Atualizado Payload
+    - Atulizado Browser Flood ```01/03/2025```
+    - Atualizado UDP Flood Bypass ```06/03/2025```
+    - Atualizado UDP Flood removed ```06/03/2025```
+    - Adicionado TCP and UDP Flood Bypass ```07/03/2025```
+    - Atualizado SYN Flood ```07/03/2025```
+    - Atulizado comando ```BOTS```
+       - Agora o comando `bots` exibe a quantidade de bots atualmente conectados ao C2, organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`).  
 ---
 
 ### Owner 🎮
