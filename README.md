@@ -149,7 +149,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo nÃ
     - Adicionado TCP and UDP Flood Bypass ```07/03/2025```
     - Atualizado SYN Flood ```07/03/2025```
     - Atulizado comando ```BOTS```
-       - Agora o comando `bots` exibe a quantidade de bots atualmente conectados ao C2, organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`).  
+       - Agora o comando `BOTS` exibe a quantidade de bots atualmente conectados ao C2, e organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`).  
 ---
 
 ### Owner ðŸŽ®
