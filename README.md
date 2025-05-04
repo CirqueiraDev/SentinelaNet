@@ -150,6 +150,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo nÃ
     - Atualizado UDP Flood removed ```06/03/2025```
     - Adicionado TCP and UDP Flood Bypass ```07/03/2025```
     - Atualizado SYN Flood ```07/03/2025```
+    - Adicionado OVHUDP and OVHTCP Flood Bypass ```04/05/2025```
 ---
 
 ### Owner ðŸŽ®
