@@ -113,7 +113,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n�
 - Mitigação: Bloqueio de tráfego UDP não essencial e análise comportamental.
 
 ### 🟢 OVH Ataque Híbrido (`OVHTCP + OVHUDP`)
-- Combina attack_ovh_tcp e attack_ovh_udp em threads paralelas.
+- Combina `attack_ovh_tcp` e `attack_ovh_udp` em threads paralelas.
 - Objetivo: Confundir defesas estáticas (ex: firewalls que bloqueiam apenas TCP).
 - Mitigação: Soluções anti-DDoS com detecção de padrões híbridos (ex: Cloudflare).
 <br>
