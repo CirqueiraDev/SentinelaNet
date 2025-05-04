@@ -7,7 +7,6 @@ attacks={}
 
 bots={}
 bots_by_arch = {
-    "arm": [],
     "mips": [],
     "i386": [],
     "x86_64": [],
