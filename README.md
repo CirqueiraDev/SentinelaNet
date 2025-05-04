@@ -98,19 +98,19 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n�
 - Alterna entre TCP e UDP para confundir defesas.
 - Pode evitar filtros estáticos, mas ainda é detectável por análise comportamental.
 
-### 🟢 TCP Flood Malformado (attack_ovh_tcp)
+### 🟢 TCP Flood Malformado (`attack_ovh_tcp`)
 - Envia requisições HTTP falsas (PGET) com caminhos anômalos (/0/0/0/0, \0\0\0\0).
 - Aleatoriza bytes (0x00 a 0xFF) e terminadores de linha para burlar WAFs.
 - Usa múltiplas conexões TCP (connect, connect_ex) para saturar o servidor.
 - Mitigação: Firewalls com filtro de métodos HTTP inválidos e rate-limiting.
 
-### 🟢 UDP Flood com Payload Aleatório (attack_ovh_udp)
+### 🟢 UDP Flood com Payload Aleatório (`attack_ovh_udp`)
 - Inunda a porta alvo com datagramas UDP contendo payloads aleatórios (até 2048 bytes).
 - Não requer handshake, dificultando rastreamento.
 - Eficaz contra serviços UDP expostos (DNS, VoIP).
 - Mitigação: Bloqueio de tráfego UDP não essencial e análise comportamental.
 
-### 🟢 Ataque Híbrido (TCP + UDP)
+### 🟢 Ataque Híbrido (`TCP + UDP`)
 - Combina attack_ovh_tcp e attack_ovh_udp em threads paralelas.
 - Objetivo: Confundir defesas estáticas (ex: firewalls que bloqueiam apenas TCP).
 - Mitigação: Soluções anti-DDoS com detecção de padrões híbridos (ex: Cloudflare).
