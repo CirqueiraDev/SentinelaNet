@@ -145,7 +145,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
         - Agora o comando `bots` exibe a quantidade de bots atualmente conectados ao C2, e organizados por arquitetura do sistema (por exemplo: `x86_64`, `arm`, `mips`) (**tamb√©m mostra a quantidade em cada arquitetura**).  
 
 - Atualizado Payload
-    - Atulizado Browser Flood ```01/03/2025```
+    - Atualizado Browser Flood ```01/03/2025```
     - Atualizado UDP Flood Bypass ```06/03/2025```
     - Atualizado UDP Flood removed ```06/03/2025```
     - Adicionado TCP and UDP Flood Bypass ```07/03/2025```
