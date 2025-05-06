@@ -171,7 +171,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo nÃ
     - Adicionado OVHUDP and OVHTCP Flood Bypass ```04/05/2025```
 ---
 
-### Owner ðŸŽ®
+### Owner
 - **Discord: Cirqueira**
   
 <a href="https://www.instagram.com/sirkeirax/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
