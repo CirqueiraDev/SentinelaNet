@@ -57,6 +57,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
   help, ? | Shows list of commands
   botnet | Shows list of botnet attack methods
   bots | Shows all conected bots
+  stop  | Stop all your floods in progress
   clear, cls | Clears the console window screen
   exit, logout | Disconnects from the C&C server
 
@@ -169,6 +170,7 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
     - Adicionado TCP and UDP Flood Bypass ```07/03/2025```
     - Atualizado SYN Flood ```07/03/2025```
     - Adicionado OVHUDP and OVHTCP Flood Bypass ```04/05/2025```
+    - OVH BUILDER Fixed ```09/05/2025```
 ---
 
 ### Owner
