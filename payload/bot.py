@@ -330,7 +330,6 @@ def lunch_attack(method, ip, port, secs, stop_event):
     }
     methods[method](ip, port, secs, stop_event)
 
-# Inicia os ataques e associa ao usuário
 def start_attack(method, ip, port, duration, thread_count, username):
     stop_event = threading.Event()
     end_time = time.time() + duration
@@ -343,7 +342,6 @@ def start_attack(method, ip, port, duration, thread_count, username):
             user_attacks[username] = []
         user_attacks[username].append((t, stop_event))
 
-# Para todos os ataques de um usuário
 def stop_attacks(username):
     if username in user_attacks:
         for t, stop_event in user_attacks[username]:
