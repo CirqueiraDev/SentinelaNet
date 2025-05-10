@@ -1,4 +1,4 @@
-import subprocess, random, random, os, time, threading, socket, sys
+import subprocess, random, os, time, threading, socket, sys
 from binascii import unhexlify
 
 # Configuration
