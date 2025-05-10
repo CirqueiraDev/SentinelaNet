@@ -5,9 +5,7 @@
   <p align="center">
       <img src="https://github.com/user-attachments/assets/00a9b589-ca17-4e50-982f-e27bc16c644c">
   </p>
-  <p>Esta Botnet é para ser uma versão aprimorada do KryptonC2 e será disponibilizada publicamente e de forma gratuita. Vou hospedá-la e permitir que os usuários a utilizem sem a necessidade de compra.</p>
-  
-[Quero usar ou testar o SentinelaNet](https://github.com/CirqueiraDev/SentinelaNet/blob/main/payload/BOTNET.md)
+  <p>Esta Botnet é para ser uma versão aprimorada do KryptonC2 e será disponibilizada publicamente e de forma gratuita.</p>
 
 </div>
 
