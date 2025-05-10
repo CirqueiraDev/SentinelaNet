@@ -1,5 +1,4 @@
-import subprocess, random, os, time, threading, socket, sys
-from binascii import unhexlify
+import subprocess, random, os, time, threading, socket
 
 # Configuration
 C2_ADDRESS  = ""
