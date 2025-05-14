@@ -12,7 +12,7 @@ bots_by_arch = {
     "x86_64": [],
     "armv7l": [],
     "armv8l": [],
-    "arch64": [],
+    "aarch64": [],
     "unknown": [],
 }
 
