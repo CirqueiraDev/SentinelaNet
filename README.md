@@ -176,4 +176,4 @@ Depois execute o malware em outro dispositivo que suporte python (caso o alvo n√
 ### Owner
 - **Discord: Cirqueira**
   
-<a href="https://www.instagram.com/sirkeirax/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
+<a href="https://www.instagram.com/cirqueirax/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
