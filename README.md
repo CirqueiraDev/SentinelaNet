@@ -35,6 +35,7 @@ Mude o IP e a porta do bot.py com o IP (IP publico se não for um teste local) e
 ```
 Depois execute o malware em outro dispositivo que suporte python (caso o alvo não tenha o python você pode compilar o malware)
 ```
+<a href="https://github.com/CirqueiraDev/botnet-exploits">Scanners e Loaders</a>
 
 <br>
 
