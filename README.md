@@ -33,9 +33,9 @@ python3 cnc.py 1337
 Mude o IP e a porta do bot.py com o IP (IP publico se não for um teste local) e a porta do seu servidor CNC depois salve o arquivo.
 ```
 ```
-Depois execute o malware em outro dispositivo que suporte python (caso o alvo não tenha o python você pode compilar o malware)
+Depois execute o malware em outro dispositivo que suporte python (caso o alvo não tenha o python você pode tentar compilar o malware)
 ```
-<a href="https://github.com/CirqueiraDev/botnet-exploits">Scanners e Loaders</a>
+### Tente usar <a href="https://github.com/CirqueiraDev/botnet-exploits">Scanners e Loaders</a> (não é possivel gerar um binario TOTALMENTE estático com python puro)
 
 <br>
 
