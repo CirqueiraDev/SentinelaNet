@@ -395,7 +395,7 @@ def main():
                 method = command
                 ip = args[1]
                 port = int(args[2])
-                secs = time.time() + int(args[3])
+                secs = int(args[3])
                 threads = int(args[4])
                 username = args[5] if len(args) >= 6 else "default"
 
