@@ -339,7 +339,7 @@ def command_line(client, username):
 
             elif command == 'OWNER' or command == 'CREDITS':
                 send(client, f'\n{B}Instagram{gray}: {Q}cirqueirax')
-                send(client, f'{B}Telegram{gray}: {Q}Cirqueiraza')
+                send(client, f'{B}Telegram{gray}: {Q}Cirqueiraz')
                 send(client, f'{B}Discord{gray}: {Q}cirqueira')
                 send(client, f'{B}GitHub{gray}: {Q}CirqueiraDev\n')
 
