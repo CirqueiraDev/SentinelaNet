@@ -338,7 +338,7 @@ def command_line(client, username):
                     blacklist_idk(args, send, client)
 
             elif command == 'OWNER' or command == 'CREDITS':
-                send(client, f'\n{B}Instagram{gray}: {Q}cirqueirakkjk')
+                send(client, f'\n{B}Instagram{gray}: {Q}cirqueirax')
                 send(client, f'{B}Telegram{gray}: {Q}Cirqueiraza')
                 send(client, f'{B}Discord{gray}: {Q}cirqueira')
                 send(client, f'{B}GitHub{gray}: {Q}CirqueiraDev\n')
