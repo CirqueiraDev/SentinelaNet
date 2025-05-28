@@ -174,4 +174,4 @@ python3 cnc.py 1337
 
 ### Owner
 - **Discord: Cirqueira**
-  
+- <a href="https://www.instagram.com/cirqueirax/">Meu instagram</a>
