@@ -1,9 +1,10 @@
 <div align="center">
     <h1>SentinelaNet</h1>
     <h3>SentinelaNet é uma CNC (Comando e Controle) em Python, projetada para gerenciar um malware que realiza ataques de disparos em massa (DDoS).</h3>
-
-  <p align="center">
-      <img src="https://github.com/user-attachments/assets/00a9b589-ca17-4e50-982f-e27bc16c644c">
+ 
+  <p align=
+      
+https://github.com/user-attachments/assets/22f0f21b-e1fc-4b75-9442-4b2ce5c2ee9c
   </p>
   <p>Esta Botnet é para ser uma versão aprimorada do KryptonC2 e será disponibilizada publicamente e de forma gratuita.</p>
 
@@ -18,6 +19,7 @@ git clone https://github.com/CirqueiraDev/SentinelaNet
 ```shell script
 cd SentinelaNet
 ```
+
 ```shell script
 pip install colorama
 ```
